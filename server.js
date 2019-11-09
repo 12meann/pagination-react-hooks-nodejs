@@ -140,6 +140,7 @@ function paginatedResults(array) {
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
+    const totalDocuments = array.length;
     const results = {};
     if (startIndex > 0) {
       results.prev = {
@@ -147,16 +148,17 @@ function paginatedResults(array) {
         limit
       };
     }
-    if (endIndex < array.length) {
+    if (endIndex < totalDocuments) {
       results.next = {
         page: page + 1,
         limit
       };
     }
+    results.totalDocuments = totalDocuments;
     results.result = array.slice(startIndex, endIndex);
     res.paginatedResults = results;
     next();
   };
 }
 
-app.listen("8000", console.log("Listening at port 8000"));
+app.listen("5000", console.log("Listening at port 5000"));

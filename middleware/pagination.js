@@ -5,19 +5,23 @@ module.exports = function pagination(model) {
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
+    const totalDocuments = await model.countDocuments().exec();
     const results = {};
+    //prev
     if (startIndex > 0) {
       results.prev = {
         page: page - 1,
         limit
       };
     }
-    if (endIndex < (await model.countDocuments().exec())) {
+    //next
+    if (endIndex < totalDocuments) {
       results.next = {
         page: page + 1,
         limit
       };
     }
+    results.totalDocuments = totalDocuments;
     try {
       results.result = await model
         .find()
