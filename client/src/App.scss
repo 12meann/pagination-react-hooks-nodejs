@@ -1,0 +1,95 @@
+$main-color: #00203fff;
+$sec-color: #adefd1ff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  width: 80%;
+  margin: 0 auto;
+  h1 {
+    text-align: center;
+    padding: 20px;
+  }
+}
+.loading {
+  text-align: center;
+  font-size: 18px;
+}
+.posts {
+  list-style: none;
+
+  li {
+    border: $main-color 1px solid;
+    box-shadow: 5 5 0 10px $main-color;
+    background-color: white;
+    color: $main-color;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    h6::first-letter,
+    p::first-letter {
+      text-transform: capitalize;
+    }
+    small {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 40px;
+      width: 40px;
+      background-color: $main-color;
+      color: $sec-color;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 35px;
+      overflow: hidden;
+    }
+    h6 {
+      font-size: 18px;
+      padding: 10px 0;
+    }
+    p {
+      letter-spacing: 2px;
+      font-size: 16px;
+    }
+  }
+}
+
+//pagination styles
+nav.pagination {
+  ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+    li,
+    button {
+      width: 40px;
+      cursor: pointer;
+    }
+    li:first-child,
+    li:last-child,
+    li:first-child button,
+    li:last-child button {
+      width: 80px;
+    }
+    button {
+      height: 40px;
+      background-color: $main-color;
+      outline: none;
+      border: none;
+      border-right: 1px $sec-color solid;
+
+      color: $sec-color;
+      width: 40px;
+    }
+    button:disabled {
+      color: #5c5c5c;
+      cursor: default;
+    }
+  }
+}

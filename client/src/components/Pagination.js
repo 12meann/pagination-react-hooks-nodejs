@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Pagination = ({
   goToPrevPage,
   goToNextPage,
   totalPosts,
   postsPerPage,
-  setCurrentPage,
-  currentPage
+  paginate,
+  loading
 }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(currentPage);
+  const handleClick = number => {
+    paginate(number);
+  };
+
   return (
-    <>
+    <nav className="pagination">
       <ul>
-        {/* <li> {goToPrevPage && <button onClick={goToPrevPage}>Prev</button>}</li> */}
         <li>
-          {" "}
           <button disabled={!goToPrevPage} onClick={goToPrevPage}>
             Prev
           </button>
         </li>
         {pageNumbers.map(number => (
           <li key={number}>
-            <button>{number}</button>
+            <button onClick={() => handleClick(number)}>{number}</button>
           </li>
         ))}
         <li>
@@ -35,7 +36,7 @@ const Pagination = ({
           </button>
         </li>
       </ul>
-    </>
+    </nav>
   );
 };
 
